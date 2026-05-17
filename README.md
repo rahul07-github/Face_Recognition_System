@@ -302,27 +302,33 @@ error: src refspec main does not match any
 
 ---
 
+
 ## 📸 Screenshots
 
-> **Tab 1 — Dataset Create**
-<!-- Add screenshot: dataset_tab.png -->
-![Dataset Tab](screenshots/dataset_tab.png)
+**Tab 1 — Dataset Create**
 
-> **Tab 2 — Train Model**
-<!-- Add screenshot: train_tab.png -->
-![Train Tab](screenshots/train_tab.png)
+![Dataset Tab](https://github.com/user-attachments/assets/0298b5d8-3ed0-40e4-a939-5093dfe2bd56)
 
-> **Tab 3 — Face Recognition**
-<!-- Add screenshot: recognition_tab.png -->
-![Recognition Tab](screenshots/recognition_tab.png)
+![Dataset Tab 2](https://github.com/user-attachments/assets/65ed7674-5331-402e-aa99-7dc03149da45)
+
+**Tab 2 — Train Model**
+
+![Train Tab](https://github.com/user-attachments/assets/868f1d17-b2b8-4552-b1f4-d47eb0d89c80)
+
+![Train Tab](https://github.com/user-attachments/assets/a50bc756-726e-40c6-9a1e-e90b9c7d0a01)
+
+
+**Tab 3 — Face Recognition**
+
+![Recognition Tab](https://github.com/user-attachments/assets/250b07dd-c3cc-4821-9e5b-a7fe09f5050c)
 
 ---
 
 ## 👨‍💻 Author
 
 **Rahul Kumar Jha**  
-B.Tech Computer Science (Data Analytics & ML)  
-SAM Global University, Bhopal  
+B.Tech Computer Science (Data Science & GenAI)  
+SAM Global University
 
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-Connect-blue?style=flat&logo=linkedin)](https://linkedin.com/in/rahul07)
 [![GitHub](https://img.shields.io/badge/GitHub-rahul07--github-black?style=flat&logo=github)](https://github.com/rahul07-github)
@@ -360,7 +366,7 @@ For permissions or collaborations, contact via LinkedIn or GitHub.
 
 <div align="center">
 
-Made with ❤️ by **Rahul Kumar Jha** | Bhopal, India 🇮🇳
+Made with ❤️ by **Rahul Kumar Jha** | Gurgram, Haryana, India 🇮🇳
 
 ⭐ If you found this project helpful, please consider starring the repository!
 
