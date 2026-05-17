@@ -136,7 +136,7 @@ DATASET_PATH         = "dataset"
 FACE_SIZE            = (100, 100)
 MODEL_PATH           = "face_model.yml"
 LABELS_PATH          = "labels.json"
-CONFIDENCE_THRESHOLD = 110         # LBPH: lower = better match
+CONFIDENCE_THRESHOLD = 120         # LBPH: lower = better match
 MAX_IMAGES_DEFAULT   = 30
 
 os.makedirs(DATASET_PATH, exist_ok=True)
@@ -233,6 +233,12 @@ def load_recognizer(_version: int):
 # ══════════════════════════════════════════════════════════════
 face_cascade = load_cascade()
 
+@st.cache_resource
+def load_alt_cascade():
+    path = cv2.data.haarcascades + "haarcascade_frontalface_alt2.xml"
+    return cv2.CascadeClassifier(path)
+
+face_cascade_alt = load_alt_cascade() 
 
 def get_dataset_info() -> dict:
     """{ person_name: [img1, img2, …] }"""
@@ -388,14 +394,16 @@ def tab_dataset():
 
         person_name = st.text_input(
             "Enter your name",
-            placeholder="e.g. Rahul, Priya, Nisha …",
+            placeholder="e.g. Rahul, Hrishabh, Nisha …",
             key="ds_name"
         )
-        max_imgs = st.slider("Target images", 5, 100, MAX_IMAGES_DEFAULT,5)
-        max_imgs=st.slider(
-            "Target images",
-            min_value=5,max_value=500,value=50,step=5
+        # max_imgs = st.slider("Target images", 5, 100, MAX_IMAGES_DEFAULT,5)
+        max_imgs = st.number_input(
+            "Target images (0 = unlimited)",
+            min_value=0, max_value=10000, value=30, step=5
         )
+        if max_imgs == 0:
+           max_imgs = 99999
 
         if person_name:
             name_clean = person_name.strip().title()
@@ -784,7 +792,7 @@ Then restart Streamlit.
     show_conf = True
     with st.expander("⚙️ Recognition Settings"):
         threshold = st.slider(
-            "Confidence Threshold", 40, 130, CONFIDENCE_THRESHOLD, 5,
+            "Confidence Threshold", 60, 150, CONFIDENCE_THRESHOLD, 5,
             help="Lower = stricter. Lower value = stricter match. Too many unknowns → increase it."
         )
         show_conf = st.checkbox("Confidence score dikhao", value=True)
@@ -824,12 +832,18 @@ Then restart Streamlit.
         gray    = cv2.cvtColor(img_bgr, cv2.COLOR_BGR2GRAY)
         gray_eq = cv2.equalizeHist(gray)
         gray_bl = cv2.GaussianBlur(gray_eq, (3, 3), 0)
-
+## ----------------------------------------------------------------------
         faces = face_cascade.detectMultiScale(
-            gray_bl, scaleFactor=1.1, minNeighbors=7,
-            minSize=(80, 80), flags=cv2.CASCADE_SCALE_IMAGE
+            gray_bl, scaleFactor=1.05, minNeighbors=4,
+            minSize=(40, 40), flags=cv2.CASCADE_SCALE_IMAGE
         )
-
+        # ✅ Ab — globally cached wala use karo (sirf 1 change)
+        if len(faces) == 0:
+            faces = face_cascade_alt.detectMultiScale(
+            gray_bl, scaleFactor=1.05, minNeighbors=4,
+            minSize=(40, 40), flags=cv2.CASCADE_SCALE_IMAGE
+            )
+##-----------------------------------
         annotated = img_bgr.copy()
         results   = []
 
