@@ -1,0 +1,12 @@
+# requirements.txt
+# Install karo: pip install -r requirements.txt
+
+streamlit>=1.32.0
+opencv-contrib-python-headless>=4.8.0
+numpy>=1.24.0
+Pillow>=10.0.0
+
+
+
+##headless version mein woh GUI part hota hi nahi. Sirf image processing wala kaam karta hai —
+## jo teri app ko actually chahiye. Camera input st.camera_input() se aa rahi hai, OpenCV se nahi.
